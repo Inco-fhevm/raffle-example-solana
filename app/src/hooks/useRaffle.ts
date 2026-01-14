@@ -201,7 +201,7 @@ export function useRaffle() {
             ticket: ticketPDA,
             vault: vaultPDA,
             systemProgram: SystemProgram.programId,
-            incoLightningProgram: INCO_LIGHTNING_PROGRAM_ID,
+            // incoLightningProgram: INCO_LIGHTNING_PROGRAM_ID,
           })
           .rpc();
 
@@ -237,7 +237,7 @@ export function useRaffle() {
             authority: publicKey,
             raffle: rafflePDA,
             systemProgram: SystemProgram.programId,
-            incoLightningProgram: INCO_LIGHTNING_PROGRAM_ID,
+            // incoLightningProgram: INCO_LIGHTNING_PROGRAM_ID,
           })
           .rpc();
 
@@ -274,7 +274,7 @@ export function useRaffle() {
             raffle: rafflePDA,
             ticket: ticketPDA,
             systemProgram: SystemProgram.programId,
-            incoLightningProgram: INCO_LIGHTNING_PROGRAM_ID,
+            // incoLightningProgram: INCO_LIGHTNING_PROGRAM_ID,
           })
           .instruction();
 
@@ -354,7 +354,7 @@ export function useRaffle() {
             raffle: rafflePDA,
             ticket: ticketPDA,
             systemProgram: SystemProgram.programId,
-            incoLightningProgram: INCO_LIGHTNING_PROGRAM_ID,
+            // incoLightningProgram: INCO_LIGHTNING_PROGRAM_ID,
           })
           .remainingAccounts([
             { pubkey: allowancePda, isSigner: false, isWritable: true },
@@ -456,7 +456,7 @@ export function useRaffle() {
             vault: vaultPDA,
             instructions: SYSVAR_INSTRUCTIONS_PUBKEY,
             systemProgram: SystemProgram.programId,
-            incoLightningProgram: INCO_LIGHTNING_PROGRAM_ID,
+            // incoLightningProgram: INCO_LIGHTNING_PROGRAM_ID,
           })
           .instruction();
 

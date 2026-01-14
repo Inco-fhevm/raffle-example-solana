@@ -25,7 +25,7 @@ This program implements a simple number-guessing raffle (1-100) where:
 ### Program Flow
 
 ```
-1. create_lottery    -> Authority creates raffle with ticket price
+1. create_raffle    -> Authority creates raffle with ticket price
 2. buy_ticket        -> Player submits encrypted guess (1-100)
 3. draw_winner       -> Authority sets encrypted winning number
 4. check_winner      -> Encrypted comparison: guess == winning_number
@@ -43,17 +43,18 @@ This program implements a simple number-guessing raffle (1-100) where:
 
 ## Account Structures
 
-### Lottery
+### Raffle
 
 ```rust
-pub struct Lottery {
-    pub authority: Pubkey,           // Raffle creator
-    pub lottery_id: u64,             // Unique identifier
-    pub ticket_price: u64,           // Cost in lamports
-    pub participant_count: u32,      // Number of tickets sold
-    pub is_open: bool,               // Accepting tickets
-    pub winning_number_handle: u128, // Encrypted winning number
-    pub bump: u8,                    // PDA bump
+pub struct Raffle {
+    pub authority: Pubkey,
+    pub raffle_id: u64,
+    pub ticket_price: u64,
+    pub participant_count: u32,
+    pub is_open: bool,
+    pub prize_claimed: bool,                // True when a winner has withdrawn
+    pub winning_number_handle: u128,        // Encrypted winning number (1-100)
+    pub bump: u8,
 }
 ```
 
@@ -61,13 +62,12 @@ pub struct Lottery {
 
 ```rust
 pub struct Ticket {
-    pub lottery: Pubkey,          // Associated raffle
-    pub owner: Pubkey,            // Ticket holder
-    pub guess_handle: u128,       // Encrypted guess
-    pub is_winner_handle: u128,   // Encrypted comparison result
-    pub prize_handle: u128,       // Encrypted prize amount
-    pub claimed: bool,            // Claim status
-    pub bump: u8,                 // PDA bump
+    pub raffle: Pubkey,
+    pub owner: Pubkey,
+    pub guess_handle: u128,       // Encrypted guess (1-100)
+    pub is_winner_handle: u128,   // Encrypted: guess == winning?
+    pub claimed: bool,            // Whether this ticket holder has withdrawn
+    pub bump: u8,
 }
 ```
 
@@ -192,6 +192,28 @@ tx.add(withdrawInstruction);
 anchor-lang = "0.31.1"
 inco-lightning = { version = "0.1.4", features = ["cpi"] }
 ```
+
+## Setting up Frontend:
+
+Navigate to the app folder:
+
+```bash
+cd app
+```
+Install the dependencies:
+```bash
+bun install
+```
+
+Start the app:
+
+```bash
+bun run dev
+```
+
+The app will start on localhost:3000
+
+
 
 
 

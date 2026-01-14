@@ -7,7 +7,7 @@ import { PublicKey, LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useRaffle } from "@/hooks/useRaffle";
 import { RaffleAccount, TicketAccount } from "@/lib/program";
-import { encryptValue } from "@inco/solana-sdk/encryption";
+import { encryptValue } from "@inco/solana-sdk/encryption"; 
 import { TxStatus } from "@/components/tx-link";
 
 export default function RaffleDetailPage() {
